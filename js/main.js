@@ -31,6 +31,12 @@ class Player
         this.element.style.width = this.width + 'px';
         this.element.style.top = '0px';
         this.element.style.left = '0px';
+        this.direction = 'idle';
+        this.isMove = false;
+
+        setInterval(function () {
+            this.checkIdle();
+        }.bind(this), 250);
     }
 
     moveY(value)
@@ -51,14 +57,18 @@ class Player
                     if (value > 0)
                     {
                         temp = parseInt(this.element.style.top) + 1;
-                        this.element.style.backgroundImage = 'url("./img/idleForward.png")';
+                        this.element.style.backgroundImage = 'url("./img/walkForward.gif")';
                         this.element.style.transform = 'unset';
+                        this.direction = 'forward';
+                        this.isMove = true;
                     }
                     else
                     {
                         temp = parseInt(this.element.style.top) - 1;
                         this.element.style.backgroundImage = 'url("./img/idleBackwalk.png")';
                         this.element.style.transform = 'unset';
+                        this.direction = 'backwalk';
+                        this.isMove = true;
                     }
 
                     if (temp >= 0)
@@ -74,6 +84,7 @@ class Player
         if (!((parseInt(this.element.style.left) + parseInt(value)) > (parseInt(mainField.element.style.width) - parseInt(this.element.style.width))))
         {
             let counter = 0;
+            let direction;
             let animate = setInterval(function()
             {
                 if (counter == Math.abs(value)) 
@@ -90,12 +101,14 @@ class Player
                         temp = parseInt(this.element.style.left) + 1;
                         this.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
                         this.element.style.transform = 'scaleX(-1)';
+                        this.direction = 'side';
                     }
                     else
                     {
                         temp =parseInt(this.element.style.left) - 1;
                         this.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
                         this.element.style.transform = 'unset';
+                        this.direction = 'side';
                     }
 
                     if (temp > 0)
@@ -104,6 +117,31 @@ class Player
                     }
                 }
             }.bind(this), 1);
+        }
+    }
+
+    checkIdle()
+    {
+        this.tempOldOne = this.element.style.top;
+        this.tempOldTwo = this.element.style.left;
+        
+        setTimeout(function(){
+            this.tempNewOne = this.element.style.top;
+            this.tempNewTwo = this.element.style.left;
+        }.bind(this), 100);
+
+        if ((this.tempOldOne == this.tempNewOne) && (this.tempOldTwo == this.tempNewTwo))
+        {
+            this.isMove = false;
+        }
+
+        if (this.direction == 'forward' && this.isMove == false)
+        {
+            this.element.style.backgroundImage = 'url("./img/idleForward.png")';
+        }
+        if (this.direction == 'side' && this.isMove == false)
+        {
+            this.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
         }
     }
 }
