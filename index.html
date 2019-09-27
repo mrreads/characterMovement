@@ -10,30 +10,42 @@
 </head>
 <body>
 
-    <div class="controls">
-        <div class="wrapper">
-            <input type="text" name="posY" id="posY-value">
-            <input type="submit" value="Двинуть по Y" id="posY-button">
+    <button id="hideButton"> Скрыть элементы управления</button>
+    <div class="wrapper" id="information">
+        <div class="controls">
+            <div class="wrapper">
+                <input type="text" name="posY" id="posY-value">
+                <input type="submit" value="Двинуть по Y" id="posY-button">
+            </div>
+
+            <div class="wrapper">
+                <input type="text" name="posX" id="posX-value">
+                <input type="submit" value="Двинуть по X" id="posX-button">
+            </div>
         </div>
 
-        <div class="wrapper">
-            <input type="text" name="posX" id="posX-value">
-            <input type="submit" value="Двинуть по X" id="posX-button">
+        <div class="controls">
+            <p> WADS тоже работают </p>
+            <div class="keys">
+                <div class="up" onclick="playerOne.moveY(-10)">верх</div>
+                <div class="left" onclick="playerOne.moveX(-10)">лева</div>
+                <div class="right" onclick="playerOne.moveX(10)">права</div>
+                <div class="down" onclick="playerOne.moveY(10)">вниз</div>
+            </div>
+        </div>
+
+        <div class="debug">
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
         </div>
     </div>
 
-
-    <div id="field">
-        <div id="player"></div>
-    </div>
-
-
-    <div class="controls">
-        <div class="keys">
-            <div class="up" onclick="playerOne.moveY(-10)">верх</div>
-            <div class="left" onclick="playerOne.moveX(-10)">лева</div>
-            <div class="right" onclick="playerOne.moveX(10)">права</div>
-            <div class="down" onclick="playerOne.moveY(10)">вниз</div>
+    <div class="background">
+        <div id="field">
+            <div id="player"></div>
         </div>
     </div>
 

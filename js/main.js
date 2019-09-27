@@ -65,7 +65,7 @@ class Player
                         temp = parseInt(this.element.style.top) - 1;
                         this.element.style.backgroundImage = 'url("./img/walkBack.gif")';
                         this.element.style.transform = 'unset';
-                        this.direction = 'backwalk';
+                        this.direction = 'backward';
                         this.isMove = true;
                     }
 
@@ -137,9 +137,9 @@ class Player
         {
             this.element.style.backgroundImage = 'url("./img/idleForward.png")';
         }
-        if (this.direction == 'backwalk' && this.isMove == false)
+        if (this.direction == 'backward' && this.isMove == false)
         {
-            this.element.style.backgroundImage = 'url("./img/idleBackwalk.png")';
+            this.element.style.backgroundImage = 'url("./img/idlebackward.png")';
         }
         if (this.direction == 'side' && this.isMove == false)
         {
@@ -148,7 +148,7 @@ class Player
     }
 }
 
-let mainField = new Field('field', 600, 600);
+let mainField = new Field('field', 400, 640);
 let playerOne = new Player('player', 50, 50);
 
 buttonPosY.addEventListener('click', function()
@@ -180,3 +180,25 @@ document.addEventListener('keypress', function(event)
         playerOne.moveX(10);
     }
 });
+
+document.querySelector("#hideButton").addEventListener('click', function()
+{
+    if (document.querySelector("#information").classList.contains('hide'))
+    {
+        document.querySelector("#information").classList.remove('hide');
+    }
+    else
+    {
+        document.querySelector("#information").classList.add('hide');
+    }
+});
+
+document.querySelector(".debug p:nth-child(1)").textContent = 'Высота поля: '+mainField.element.style.height;
+document.querySelector(".debug p:nth-child(2)").textContent = 'Ширина поля: '+mainField.element.style.width;
+setInterval(function()
+{
+    document.querySelector(".debug p:nth-child(3)").textContent = 'Координаты игрока по Y: '+ parseInt(playerOne.element.style.top)+' : '+(parseInt(playerOne.element.style.top)+50);
+    document.querySelector(".debug p:nth-child(4)").textContent = 'Координаты игрока по X: '+ parseInt(playerOne.element.style.left)+' : '+(parseInt(playerOne.element.style.left)+50);
+    document.querySelector(".debug p:nth-child(5)").textContent = 'isMove: ' + playerOne.isMove;
+    document.querySelector(".debug p:nth-child(6)").textContent = 'direction: ' + playerOne.direction;
+}.bind(this), 100);
