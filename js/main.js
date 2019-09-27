@@ -1,7 +1,7 @@
 let playerElement = document.querySelector("#player");
 
-let valuePosY = document.querySelector("#posX-value");
-let buttonPosY = document.querySelector("#posX-button");
+let valuePosY = document.querySelector("#posY-value");
+let buttonPosY = document.querySelector("#posY-button");
 
 class Field
 {
@@ -32,7 +32,7 @@ class Player
         this.element.style.left = '0px';
     }
 
-    moveX(value)
+    moveY(value)
     {
         console.log(parseInt(this.element.style.top) + parseInt(value));
         console.log(parseInt(mainField.element.style.height) - parseInt(this.element.style.height));
@@ -66,5 +66,5 @@ let playerOne = new Player('player', 50, 50, 'red');
 
 buttonPosY.addEventListener('click', function()
 {
-    playerOne.moveX(valuePosY.value);
+    playerOne.moveY(valuePosY.value);
 });
