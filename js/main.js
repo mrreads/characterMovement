@@ -120,6 +120,7 @@ class Player
 
     checkIdle()
     {
+        // если спустя некоторое время координаты персонажа не изменились, значит он стоит, и состояние isMoving меняется на FALSE;
         this.tempOldOne = this.element.style.top;
         this.tempOldTwo = this.element.style.left;
         
@@ -161,6 +162,7 @@ buttonPosX.addEventListener('click', function()
     playerOne.moveX(valuePosX.value);
 });
 
+// управление клвиатурой
 document.addEventListener('keypress', function(event)
 {
     if (event.code == 'KeyW')
@@ -181,6 +183,8 @@ document.addEventListener('keypress', function(event)
     }
 });
 
+
+// скрытие открытие информационной панели
 document.querySelector("#hideButton").addEventListener('click', function()
 {
     if (document.querySelector("#information").classList.contains('hide'))
@@ -193,6 +197,8 @@ document.querySelector("#hideButton").addEventListener('click', function()
     }
 });
 
+
+// панель дебага
 document.querySelector(".debug p:nth-child(1)").textContent = 'Высота поля: '+mainField.element.style.height;
 document.querySelector(".debug p:nth-child(2)").textContent = 'Ширина поля: '+mainField.element.style.width;
 setInterval(function()
