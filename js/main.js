@@ -4,8 +4,6 @@ let buttonPosY = document.querySelector("#posY-button");
 let valuePosX = document.querySelector("#posX-value");
 let buttonPosX = document.querySelector("#posX-button");
 
-let buttonPosALL= document.querySelector("#posALL-button");
-
 class Field
 {
     constructor(id, height, width)
@@ -157,12 +155,6 @@ buttonPosY.addEventListener('click', function()
 buttonPosX.addEventListener('click', function()
 {
     playerOne.moveX(valuePosX.value);
-});
-
-buttonPosALL.addEventListener('click', function()
-{
-    playerOne.moveX(valuePosX.value);
-    playerOne.moveY(valuePosY.value);
 });
 
 document.addEventListener('keypress', function(event)
