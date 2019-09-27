@@ -21,7 +21,7 @@ class Field
 
 class Player
 {
-    constructor(id, height, width, color)
+    constructor(id, height, width)
     {
         this.id = id;
         this.height = height;
