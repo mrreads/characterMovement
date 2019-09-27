@@ -1,9 +1,3 @@
-let valuePosY = document.querySelector("#posY-value");
-let buttonPosY = document.querySelector("#posY-button");
-
-let valuePosX = document.querySelector("#posX-value");
-let buttonPosX = document.querySelector("#posX-button");
-
 class Field
 {
     constructor(id, height, width)
@@ -152,11 +146,15 @@ class Player
 let mainField = new Field('field', 400, 640);
 let playerOne = new Player('player', 50, 50);
 
+let valuePosY = document.querySelector("#posY-value");
+let buttonPosY = document.querySelector("#posY-button");
 buttonPosY.addEventListener('click', function()
 {
     playerOne.moveY(valuePosY.value);
 });
 
+let valuePosX = document.querySelector("#posX-value");
+let buttonPosX = document.querySelector("#posX-button");
 buttonPosX.addEventListener('click', function()
 {
     playerOne.moveX(valuePosX.value);
