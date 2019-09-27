@@ -101,3 +101,24 @@ buttonPosALL.addEventListener('click', function()
     playerOne.moveX(valuePosX.value);
     playerOne.moveY(valuePosY.value);
 });
+
+document.addEventListener('keypress', function(event)
+{
+    if (event.code == 'KeyW')
+    {
+        playerOne.moveY(-10);
+    }
+    if (event.code == 'KeyS')
+    {
+        playerOne.moveY(10);
+    }
+    if (event.code == 'KeyA')
+    {
+        playerOne.moveX(-10);
+    }
+    if (event.code == 'KeyD')
+    {
+        playerOne.moveX(10);
+    }
+    
+});
