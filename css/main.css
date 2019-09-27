@@ -128,5 +128,6 @@ input
     background-image: url("./../img/idleForward.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: 100%;
 }
+
