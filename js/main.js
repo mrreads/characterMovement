@@ -203,8 +203,8 @@ document.querySelector(".debug p:nth-child(1)").textContent = 'Высота по
 document.querySelector(".debug p:nth-child(2)").textContent = 'Ширина поля: '+mainField.element.style.width;
 setInterval(function()
 {
-    document.querySelector(".debug p:nth-child(3)").textContent = 'Координаты игрока по Y: '+ parseInt(playerOne.element.style.top)+' : '+(parseInt(playerOne.element.style.top)+50);
-    document.querySelector(".debug p:nth-child(4)").textContent = 'Координаты игрока по X: '+ parseInt(playerOne.element.style.left)+' : '+(parseInt(playerOne.element.style.left)+50);
+    document.querySelector(".debug p:nth-child(3)").textContent = 'Координаты игрока по Y: '+ parseInt(playerOne.element.style.top)+' : '+(parseInt(playerOne.element.style.top)+parseInt(playerOne.element.style.height));
+    document.querySelector(".debug p:nth-child(4)").textContent = 'Координаты игрока по X: '+ parseInt(playerOne.element.style.left)+' : '+(parseInt(playerOne.element.style.left)+parseInt(playerOne.element.style.width));
     document.querySelector(".debug p:nth-child(5)").textContent = 'isMove: ' + playerOne.isMove;
     document.querySelector(".debug p:nth-child(6)").textContent = 'direction: ' + playerOne.direction;
 }.bind(this), 100);
