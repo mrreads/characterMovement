@@ -63,7 +63,7 @@ class Player
                     else
                     {
                         temp = parseInt(this.element.style.top) - 1;
-                        this.element.style.backgroundImage = 'url("./img/idleBackwalk.png")';
+                        this.element.style.backgroundImage = 'url("./img/walkBack.gif")';
                         this.element.style.transform = 'unset';
                         this.direction = 'backwalk';
                         this.isMove = true;
@@ -97,14 +97,14 @@ class Player
                     if (value >= 0)
                     {
                         temp = parseInt(this.element.style.left) + 1;
-                        this.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
+                        this.element.style.backgroundImage = 'url("./img/walkSide.gif")';
                         this.element.style.transform = 'scaleX(-1)';
                         this.direction = 'side';
                     }
                     else
                     {
                         temp =parseInt(this.element.style.left) - 1;
-                        this.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
+                        this.element.style.backgroundImage = 'url("./img/walkSide.gif")';
                         this.element.style.transform = 'unset';
                         this.direction = 'side';
                     }
@@ -136,6 +136,10 @@ class Player
         if (this.direction == 'forward' && this.isMove == false)
         {
             this.element.style.backgroundImage = 'url("./img/idleForward.png")';
+        }
+        if (this.direction == 'backwalk' && this.isMove == false)
+        {
+            this.element.style.backgroundImage = 'url("./img/idleBackwalk.png")';
         }
         if (this.direction == 'side' && this.isMove == false)
         {
@@ -175,5 +179,4 @@ document.addEventListener('keypress', function(event)
     {
         playerOne.moveX(10);
     }
-    
 });
