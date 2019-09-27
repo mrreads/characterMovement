@@ -51,14 +51,14 @@ class Player
                     if (value > 0)
                     {
                         temp = parseInt(this.element.style.top) + 1;
-                        playerOne.element.style.backgroundImage = 'url("./img/idleForward.png")';
-                        playerOne.element.style.transform = 'unset';
+                        this.element.style.backgroundImage = 'url("./img/idleForward.png")';
+                        this.element.style.transform = 'unset';
                     }
                     else
                     {
                         temp = parseInt(this.element.style.top) - 1;
-                        playerOne.element.style.backgroundImage = 'url("./img/idleBackwalk.png")';
-                        playerOne.element.style.transform = 'unset';
+                        this.element.style.backgroundImage = 'url("./img/idleBackwalk.png")';
+                        this.element.style.transform = 'unset';
                     }
 
                     if (temp >= 0)
@@ -88,14 +88,14 @@ class Player
                     if (value >= 0)
                     {
                         temp = parseInt(this.element.style.left) + 1;
-                        playerOne.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
-                        playerOne.element.style.transform = 'scaleX(-1)';
+                        this.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
+                        this.element.style.transform = 'scaleX(-1)';
                     }
                     else
                     {
                         temp =parseInt(this.element.style.left) - 1;
-                        playerOne.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
-                        playerOne.element.style.transform = 'unset';
+                        this.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
+                        this.element.style.transform = 'unset';
                     }
 
                     if (temp > 0)
