@@ -26,11 +26,9 @@ class Player
         this.id = id;
         this.height = height;
         this.width = width;
-        this.color = color;
         this.element = document.querySelector('#'+this.id);
         this.element.style.height = this.height + 'px';
         this.element.style.width = this.width + 'px';
-        this.element.style.backgroundColor = this.color;
         this.element.style.top = '0px';
         this.element.style.left = '0px';
     }
@@ -48,8 +46,21 @@ class Player
                 } 
                 else 
                 {
+                    let temp;
                     counter++;
-                    let temp = (value > 0) ? parseInt(this.element.style.top) + 1 : parseInt(this.element.style.top) - 1;
+                    if (value > 0)
+                    {
+                        temp = parseInt(this.element.style.top) + 1;
+                        playerOne.element.style.backgroundImage = 'url("./img/idleForward.png")';
+                        playerOne.element.style.transform = 'unset';
+                    }
+                    else
+                    {
+                        temp = parseInt(this.element.style.top) - 1;
+                        playerOne.element.style.backgroundImage = 'url("./img/idleBackwalk.png")';
+                        playerOne.element.style.transform = 'unset';
+                    }
+
                     if (temp >= 0)
                     {
                         this.element.style.top = temp + "px";
@@ -71,8 +82,22 @@ class Player
                 } 
                 else 
                 {
+                    let temp;
                     counter++;
-                    let temp = (value >= 0) ? parseInt(this.element.style.left) + 1 : parseInt(this.element.style.left) - 1;
+
+                    if (value >= 0)
+                    {
+                        temp = parseInt(this.element.style.left) + 1;
+                        playerOne.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
+                        playerOne.element.style.transform = 'scaleX(-1)';
+                    }
+                    else
+                    {
+                        temp =parseInt(this.element.style.left) - 1;
+                        playerOne.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
+                        playerOne.element.style.transform = 'unset';
+                    }
+
                     if (temp > 0)
                     {
                         this.element.style.left = temp + "px";
@@ -84,7 +109,7 @@ class Player
 }
 
 let mainField = new Field('field', 600, 600);
-let playerOne = new Player('player', 50, 50, 'red');
+let playerOne = new Player('player', 50, 50);
 
 buttonPosY.addEventListener('click', function()
 {

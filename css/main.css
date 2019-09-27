@@ -14,6 +14,7 @@ html, body
     min-height: 100%;
 
     align-items: center;
+    image-rendering: pixelated;
     justify-content: center;
 }
 
@@ -120,4 +121,12 @@ input
     right: 0;
 
     transform: translate(0%, -50%);
+}
+
+#player
+{
+    background-image: url("./../img/idleForward.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
