@@ -50,7 +50,10 @@ class Player
                 {
                     counter++;
                     let temp = (value > 0) ? parseInt(this.element.style.top) + 1 : parseInt(this.element.style.top) - 1;
-                    this.element.style.top = temp + "px";
+                    if (temp >= 0)
+                    {
+                        this.element.style.top = temp + "px";
+                    }
                 }
             }.bind(this), 1);
         }
@@ -69,8 +72,11 @@ class Player
                 else 
                 {
                     counter++;
-                    let temp = (value > 0) ? parseInt(this.element.style.left) + 1 : parseInt(this.element.style.left) - 1;
-                    this.element.style.left = temp + "px";
+                    let temp = (value >= 0) ? parseInt(this.element.style.left) + 1 : parseInt(this.element.style.left) - 1;
+                    if (temp > 0)
+                    {
+                        this.element.style.left = temp + "px";
+                    }
                 }
             }.bind(this), 1);
         }

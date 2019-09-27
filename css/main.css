@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Comfortaa&display=swap");
+
 *
 {
     box-sizing: border-box;
@@ -13,6 +15,11 @@ html, body
 
     align-items: center;
     justify-content: center;
+}
+
+body, input
+{
+    font-family: "Comfortaa", cursive;
 }
 
 #field
@@ -31,5 +38,86 @@ html, body
 
 input
 {
-    height: 25px;
+    display: flex;
+
+    padding: 10px 15px;
+
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.controls .wrapper
+{
+    display: flex;
+
+    flex-flow: row nowrap;
+}
+
+.controls
+{
+    display: flex;
+
+    flex-flow: column nowrap;
+}
+
+.keys
+{
+    position: relative;
+
+    width: 150px;
+    height: 150px;
+
+    border: 1px red solid;
+}
+
+.up, .left, .right, .down
+{
+    font-size: 12px;
+
+    position: absolute;
+
+    display: flex;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer;
+
+    border: 1px solid black;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.up
+{
+    top: 0;
+    left: 50%;
+
+    transform: translate(-50%, 0%);
+}
+
+.down
+{
+    bottom: 0;
+    left: 50%;
+
+    transform: translate(-50%, 0%);
+}
+
+.left
+{
+    top: 50%;
+    left: 0;
+
+    transform: translate(0%, -50%);
+}
+
+.right
+{
+    top: 50%;
+    right: 0;
+
+    transform: translate(0%, -50%);
 }
