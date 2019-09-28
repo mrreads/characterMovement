@@ -203,9 +203,8 @@ class Collision
                     playerOne.element.style.left = temp + 'px';
                 }
             }
-
-            // RIGHT COLLISION
-            if (((parseInt(playerOne.element.style.left)) < ((parseInt(this.element.style.left) + parseInt(this.element.style.width)))) && (parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
+            
+            if (((parseInt(playerOne.element.style.left)) < ((parseInt(this.element.style.left) + parseInt(this.element.style.width)))) && !(parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
             {
                 if ((parseInt(playerOne.element.style.top) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top)+parseInt(this.element.style.height))))
                 {
