@@ -71,6 +71,7 @@ class Player
             }.bind(this), 1);
         }
     }
+
     moveX(value)
     {
         if (!((parseInt(this.element.style.left) + parseInt(value)) > (parseInt(mainField.element.style.width) - parseInt(this.element.style.width))))
@@ -159,12 +160,16 @@ class Trigger
         this.func = func;
 
         setInterval(function() {
-            if ((parseInt(playerOne.element.style.left) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
+            if ((parseInt(playerOne.element.style.left) >= parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
             {
-                if ((parseInt(playerOne.element.style.top) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top)+parseInt(this.element.style.height))))
+                if ((parseInt(playerOne.element.style.top) >= parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top)+parseInt(this.element.style.height))))
                 {
                     this.inTrigger = true;
                     this.func();
+                }
+                else
+                {
+                    this.inTrigger = false;
                 }
             }
             else
@@ -175,10 +180,49 @@ class Trigger
     }
 }
 
+class Collision
+{
+    constructor(id, height, width, top, left)
+    {
+        this.id = id;
+        this.height = height;
+        this.width = width;
+        this.element = document.querySelector('#'+this.id);
+        this.element.style.height = this.height + 'px';
+        this.element.style.width = this.width + 'px';
+        this.element.style.top = top+'px';
+        this.element.style.left = left+'px';
+
+        setInterval(function() {
+            // LEFT COLLISION
+            if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
+            {
+                if ((parseInt(playerOne.element.style.top) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top)+parseInt(this.element.style.height))))
+                {
+                    let temp = (parseInt(this.element.style.left) - parseInt(playerOne.element.style.width));
+                    playerOne.element.style.left = temp + 'px';
+                }
+            }
+
+            // RIGHT COLLISION
+            if (((parseInt(playerOne.element.style.left)) < ((parseInt(this.element.style.left) + parseInt(this.element.style.width)))) && (parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
+            {
+                if ((parseInt(playerOne.element.style.top) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top)+parseInt(this.element.style.height))))
+                {
+                    let temp = (parseInt(this.element.style.left) + parseInt(this.element.style.width));
+                    playerOne.element.style.left = temp + 'px';
+                }
+            }
+        }.bind(this), 5);
+    }
+}
+
 triggerOne = new Trigger("triggerOne", 100, 100, 250, 400, function()
 {
     // код, когда в триггере
 }.bind(this));
+
+collisionOne = new Collision("collisionOne", 100, 100, 250, 200);
 
 let mainField = new Field('field', 400, 640);
 let playerOne = new Player('player', 50, 50);
