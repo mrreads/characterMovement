@@ -143,6 +143,43 @@ class Player
     }
 }
 
+class Trigger
+{
+    constructor(id, height, width, top, left, func)
+    {
+        this.id = id;
+        this.height = height;
+        this.width = width;
+        this.element = document.querySelector('#'+this.id);
+        this.element.style.height = this.height + 'px';
+        this.element.style.width = this.width + 'px';
+        this.element.style.top = top+'px';
+        this.element.style.left = left+'px';
+        this.inTrigger = false;
+        this.func = func;
+
+        setInterval(function() {
+            if ((parseInt(playerOne.element.style.left) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
+            {
+                if ((parseInt(playerOne.element.style.top) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top)+parseInt(this.element.style.height))))
+                {
+                    this.inTrigger = true;
+                    this.func();
+                }
+            }
+            else
+            {
+                this.inTrigger = false;
+            }
+        }.bind(this), 150);
+    }
+}
+
+triggerOne = new Trigger("triggerOne", 100, 100, 250, 400, function()
+{
+    // код, когда в триггере
+}.bind(this));
+
 let mainField = new Field('field', 400, 640);
 let playerOne = new Player('player', 50, 50);
 
@@ -205,4 +242,5 @@ setInterval(function()
     document.querySelector(".debug p:nth-child(4)").textContent = 'Координаты игрока по X: '+ parseInt(playerOne.element.style.left)+' : '+(parseInt(playerOne.element.style.left)+parseInt(playerOne.element.style.width));
     document.querySelector(".debug p:nth-child(5)").textContent = 'isMove: ' + playerOne.isMove;
     document.querySelector(".debug p:nth-child(6)").textContent = 'direction: ' + playerOne.direction;
+    document.querySelector(".debug p:nth-child(7)").textContent = 'inTrigger: ' + triggerOne.inTrigger;
 }.bind(this), 100);

@@ -163,3 +163,10 @@ input
 {
     display: none;
 }
+
+.trigger
+{
+    position: absolute;
+
+    border: 2px solid red;
+}
