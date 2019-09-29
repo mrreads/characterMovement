@@ -214,15 +214,15 @@ class Collision
             //     }
             // }
 
-            // TOP COLLISION
-            if ((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > (parseInt(this.element.style.top)))
-            {
-                if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) >= parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
-                {
-                    let temp = (parseInt(this.element.style.top) - parseInt(playerOne.element.style.height));
-                    playerOne.element.style.top = temp + 'px';
-                }
-            }
+            // // TOP COLLISION
+            // if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > (parseInt(this.element.style.top))) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top) + parseInt(this.element.style.height))))
+            // {
+            //     if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) >= parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
+            //     {
+            //         let temp = (parseInt(this.element.style.top) - parseInt(playerOne.element.style.height));
+            //         playerOne.element.style.top = temp + 'px';
+            //     }
+            // }
         }.bind(this), 5);
     }
 }
