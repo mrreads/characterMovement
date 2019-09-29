@@ -186,3 +186,11 @@ input
     background-position: center;
     background-size: 100%;
 }
+
+.rupee
+{
+    background-image: url("./../img/Rupee.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}

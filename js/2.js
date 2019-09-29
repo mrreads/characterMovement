@@ -25,6 +25,7 @@ class Player
         this.element.style.left = left + 'px';
         this.direction = 'idle';
         this.isMove = false;
+        this.rupeeCounter = 0;
 
         setInterval(function () {
             this.checkIdle();
@@ -155,6 +156,7 @@ class Trigger
         this.element.style.left = left + 'px';
         this.inTrigger = false;
         this.func = func;
+        this.isPicked = false;
 
         // Проверяет, находится ли игрок в триггере.
         setInterval(function () 
@@ -251,21 +253,30 @@ let mainField = new Field('field', 568, 680);
 let playerOne = new Player('player', 50, 50, 230, 300);
 
 // id, height, width, top coordinate, left coordinate
-triggerOne = new Trigger("triggerOne", 100, 100, 540, 295, function () {
+let triggerOne = new Trigger("triggerOne", 100, 100, 540, 295, function () {
     location.href = '1.html';
 }.bind(this));
 
+let triggerTwo = new Trigger("triggerTwo", 50, 50, 80, 300, function () {
+    if (this.element.classList.contains('rupee') && this.isPicked == false)
+    {
+        playerOne.rupeeCounter += 1;
+        this.isPicked = true;
+        this.element.remove();
+    }
+});
+
 // id, height, width, top coordinate, left coordinate
-collisionOne = new Collision("collisionOne", 95, 85, 210, 75);
-collisionTwo = new Collision("collisionTwo", 95, 85, 100, 75);
-collisionThree = new Collision("collisionThree", 95, 85, 210, 530);
-collisionFour = new Collision("collisionFour", 95, 85, 100, 530);
-collisionFive = new Collision("collisionFive", 285, 80, 155, 435);
-collisionSix = new Collision("collisionSix", 285, 80, 155, 175);
-collisionEight = new Collision("collisionEight", 100, 85, 35, 170);
-collisionNine = new Collision("collisionNine", 100, 85, 35, 430);
-collisionTen = new Collision("collisionTen", 55, 135, 525, 390);
-collisionEleven = new Collision("collisionEleven", 55, 135, 525, 160);
+let collisionOne = new Collision("collisionOne", 95, 85, 210, 75);
+let collisionTwo = new Collision("collisionTwo", 95, 85, 100, 75);
+let collisionThree = new Collision("collisionThree", 95, 85, 210, 530);
+let collisionFour = new Collision("collisionFour", 95, 85, 100, 530);
+let collisionFive = new Collision("collisionFive", 285, 80, 155, 435);
+let collisionSix = new Collision("collisionSix", 285, 80, 155, 175);
+let collisionEight = new Collision("collisionEight", 100, 85, 35, 170);
+let collisionNine = new Collision("collisionNine", 100, 85, 35, 430);
+let collisionTen = new Collision("collisionTen", 55, 135, 525, 390);
+let collisionEleven = new Collision("collisionEleven", 55, 135, 525, 160);
 
 let valuePosY = document.querySelector("#posY-value");
 let buttonPosY = document.querySelector("#posY-button");
@@ -319,4 +330,5 @@ setInterval(function () {
     document.querySelector(".debug p:nth-child(5)").textContent = 'isMove: ' + playerOne.isMove;
     document.querySelector(".debug p:nth-child(6)").textContent = 'direction: ' + playerOne.direction;
     document.querySelector(".debug p:nth-child(7)").textContent = 'inTrigger: ' + triggerOne.inTrigger;
+    document.querySelector(".debug p:nth-child(8)").textContent = 'rupeeCounter: ' + playerOne.rupeeCounter;
 }.bind(this), 100);

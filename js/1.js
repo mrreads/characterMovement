@@ -25,6 +25,7 @@ class Player
         this.element.style.left = left + 'px';
         this.direction = 'idle';
         this.isMove = false;
+        this.rupeeCounter = 0;
 
         setInterval(function () {
             this.checkIdle();
@@ -155,6 +156,7 @@ class Trigger
         this.element.style.left = left + 'px';
         this.inTrigger = false;
         this.func = func;
+        this.isPicked = false;
 
         // Проверяет, находится ли игрок в триггере.
         setInterval(function () 
@@ -251,16 +253,26 @@ let mainField = new Field('field', 400, 640);
 let playerOne = new Player('player', 50, 50, 0, 0);
 
 // id, height, width, top coordinate, left coordinate
-triggerOne = new Trigger("triggerOne", 100, 100, 50, 450, function () {
+let triggerOne = new Trigger("triggerOne", 100, 100, 50, 450, function () {
     // код, когда в триггере
 }.bind(this));
 
-triggerTwo = new Trigger("triggerTwo", 20, 160, 380, 240, function () {
+let triggerTwo = new Trigger("triggerTwo", 20, 160, 380, 240, function () {
     location.href = '2.html';
 }.bind(this));
 
+
+let triggerThree = new Trigger("triggerThree", 50, 50, 280, 200, function () {
+    if (this.element.classList.contains('rupee') && this.isPicked == false)
+    {
+        playerOne.rupeeCounter += 1;
+        this.isPicked = true;
+        this.element.remove();
+    }
+});
+
 // id, height, width, top coordinate, left coordinate
-collisionOne = new Collision("collisionOne", 125, 125, 200, 50);
+let collisionOne = new Collision("collisionOne", 125, 125, 200, 50);
 
 let valuePosY = document.querySelector("#posY-value");
 let buttonPosY = document.querySelector("#posY-button");
@@ -314,4 +326,5 @@ setInterval(function () {
     document.querySelector(".debug p:nth-child(5)").textContent = 'isMove: ' + playerOne.isMove;
     document.querySelector(".debug p:nth-child(6)").textContent = 'direction: ' + playerOne.direction;
     document.querySelector(".debug p:nth-child(7)").textContent = 'inTrigger: ' + triggerOne.inTrigger;
+    document.querySelector(".debug p:nth-child(8)").textContent = 'rupeeCounter: ' + playerOne.rupeeCounter;
 }.bind(this), 100);
