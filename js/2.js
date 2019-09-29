@@ -1,263 +1,12 @@
-class Field 
-{
-    constructor(id, height, width) 
-    {
-        this.id = id;
-        this.height = height;
-        this.width = width;
-        this.element = document.querySelector('#' + this.id);
-        this.element.style.height = this.height + 'px';
-        this.element.style.width = this.width + 'px';
-    }
-}
-
-class Player 
-{
-    constructor(id, height, width, top, left) 
-    {
-        this.id = id;
-        this.height = height;
-        this.width = width;
-        this.element = document.querySelector('#' + this.id);
-        this.element.style.height = this.height + 'px';
-        this.element.style.width = this.width + 'px';
-        this.element.style.top = top + 'px';
-        this.element.style.left = left + 'px';
-        this.direction = 'idle';
-        this.isMove = false;
-        this.rupeeCounter = 0;
-
-        setInterval(function () {
-            this.checkIdle();
-        }.bind(this), 250);
-    }
-
-    moveY(value) 
-    {
-        if (!((parseInt(this.element.style.top) + parseInt(value)) > (parseInt(mainField.element.style.height) - parseInt(this.element.style.height)))) 
-        {
-            let counter = 0;
-            let animate = setInterval(function () 
-            {
-                if (counter == Math.abs(value)) 
-                {
-                    clearInterval(animate);
-                } 
-                else 
-                {
-                    let temp;
-                    counter++;
-                    if (value > 0) 
-                    {
-                        temp = parseInt(this.element.style.top) + 1;
-                        this.element.style.backgroundImage = 'url("./img/walkForward.gif")';
-                        this.element.style.transform = 'unset';
-                        this.direction = 'forward';
-                        this.isMove = true;
-                    } 
-                    else 
-                    {
-                        temp = parseInt(this.element.style.top) - 1;
-                        this.element.style.backgroundImage = 'url("./img/walkBack.gif")';
-                        this.element.style.transform = 'unset';
-                        this.direction = 'backward';
-                        this.isMove = true;
-                    }
-
-                    if (temp >= 0) 
-                    {
-                        this.element.style.top = temp + "px";
-                    }
-                }
-            }.bind(this), 1);
-        }
-    }
-
-    moveX(value) 
-    {
-        if (!((parseInt(this.element.style.left) + parseInt(value)) > (parseInt(mainField.element.style.width) - parseInt(this.element.style.width)))) 
-        {
-            let counter = 0;
-            let animate = setInterval(function () 
-            {
-                if (counter == Math.abs(value)) 
-                {
-                    clearInterval(animate);
-                } 
-                else 
-                {
-                    let temp;
-                    counter++;
-                    if (value >= 0) 
-                    {
-                        temp = parseInt(this.element.style.left) + 1;
-                        this.element.style.backgroundImage = 'url("./img/walkSide.gif")';
-                        this.element.style.transform = 'scaleX(-1)';
-                        this.direction = 'side';
-                    } 
-                    else 
-                    {
-                        temp = parseInt(this.element.style.left) - 1;
-                        this.element.style.backgroundImage = 'url("./img/walkSide.gif")';
-                        this.element.style.transform = 'unset';
-                        this.direction = 'side';
-                    }
-                    if (temp > 0) 
-                    {
-                        this.element.style.left = temp + "px";
-                    }
-                }
-            }.bind(this), 1);
-        }
-    }
-
-    checkIdle() 
-    {
-        // если спустя некоторое время координаты персонажа не изменились, значит он стоит, и состояние isMoving меняется на FALSE;
-        this.tempOldOne = this.element.style.top;
-        this.tempOldTwo = this.element.style.left;
-
-        setTimeout(function () {
-            this.tempNewOne = this.element.style.top;
-            this.tempNewTwo = this.element.style.left;
-        }.bind(this), 100);
-
-        if ((this.tempOldOne == this.tempNewOne) && (this.tempOldTwo == this.tempNewTwo)) 
-        {
-            this.isMove = false;
-        }
-
-        if (this.direction == 'forward' && this.isMove == false) 
-        {
-            this.element.style.backgroundImage = 'url("./img/idleForward.png")';
-        }
-        if (this.direction == 'backward' && this.isMove == false) 
-        {
-            this.element.style.backgroundImage = 'url("./img/idlebackward.png")';
-        }
-        if (this.direction == 'side' && this.isMove == false) 
-        {
-            this.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
-        }
-    }
-}
-
-class Trigger 
-{
-    constructor(id, height, width, top, left, func) 
-    {
-        this.id = id;
-        this.height = height;
-        this.width = width;
-        this.element = document.querySelector('#' + this.id);
-        this.element.style.height = this.height + 'px';
-        this.element.style.width = this.width + 'px';
-        this.element.style.top = top + 'px';
-        this.element.style.left = left + 'px';
-        this.inTrigger = false;
-        this.func = func;
-        this.isPicked = false;
-
-        // Проверяет, находится ли игрок в триггере.
-        setInterval(function () 
-        {
-            if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + parseInt(this.element.style.width)))) 
-            {
-                if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top) + parseInt(this.element.style.height)))) 
-                {
-                    this.inTrigger = true;
-                    this.func();
-                } 
-                else 
-                {
-                    this.inTrigger = false;
-                }
-            } 
-            else 
-            {
-                this.inTrigger = false;
-            }
-        }.bind(this), 50);
-    }
-}
-
-class Collision 
-{
-    constructor(id, height, width, top, left) 
-    {
-        this.id = id;
-        this.height = height;
-        this.width = width;
-        this.element = document.querySelector('#' + this.id);
-        this.element.style.height = this.height + 'px';
-        this.element.style.width = this.width + 'px';
-        this.element.style.top = top + 'px';
-        this.element.style.left = left + 'px';
-
-        // Каждые **ms проверяется, входит ли игрок в коллизию. Если входит - отталкивает обратно.
-        setInterval(function () 
-        {
-            // LEFT COLLISION
-            // ЕСЛИ - ЛЕВЫЕ КООРДИНАТЫ ИГРОКА + ШИРИНА ИГРОКА >БОЛЬШЕ> ЛЕВЫЕ КООРДИНАТЫ ОБЬЕКТА (дальше логика на ограничения действия коллизии)
-            if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + (parseInt(this.element.style.width) / 2)))) 
-            {
-                // ограничение действия коллизии по вертикали
-                if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height) - 5) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top) + parseInt(this.element.style.height) - 5))) 
-                {
-                    let temp = (parseInt(this.element.style.left) - parseInt(playerOne.element.style.width));
-                    playerOne.element.style.left = temp + 'px';
-                }
-            }
-
-            // RIGHT COLLISION
-            // ЕСЛИ - ЛЕВЫЕ КООРДИНАТЫ ИГРОКА <МЕНЬШЕ< ЛЕВЫЕ КООРДИНАТЫ ОБЬЕКТА + ШИРИНА ОБЬЕКТА (дальше логика на ограничения действия коллизии)
-            if (((parseInt(playerOne.element.style.left)) < ((parseInt(this.element.style.left) + parseInt(this.element.style.width)))) && !(parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + (parseInt(this.element.style.width) / 2)))) 
-            {
-                // ограничение действия коллизии по вертикали
-                if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height) - 5) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top) + parseInt(this.element.style.height) - 5))) 
-                {
-                    let temp = (parseInt(this.element.style.left) + parseInt(this.element.style.width));
-                    playerOne.element.style.left = temp + 'px';
-                }
-            }
-
-            // TOP COLLISION
-            // ЕСЛИ - КООРДИНАТЫ ВЫСОТЫ ИГРОКА + ВЫСОТА ИГРОКА >БОЛЬШЕ> КООРДИНАТЫ ВЫСОТЫ ОБЬЕКТА (дальше логика на ограничения действия коллизии)
-            if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > (parseInt(this.element.style.top))) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top) + (parseInt(this.element.style.height) / 2)))) 
-            {
-                // ограничение действия коллизии по горизонтали
-                if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + parseInt(this.element.style.width)))) 
-                {
-                    let temp = (parseInt(this.element.style.top) - parseInt(playerOne.element.style.height));
-                    playerOne.element.style.top = temp + 'px';
-                }
-            }
-
-            // BOTTOM COLLISION
-            // ЕСЛИ - КООРДИНАТЫ ВЫСОТЫ ИГРОКА  >МЕНЬШЕ> КООРДИНАТ ВЫСОТЫ ОБЬЕКТА + ВЫСОТА ОБЬЕКТА (дальше логика на ограничения действия коллизии)
-            if (((parseInt(playerOne.element.style.top)) > (parseInt(this.element.style.top))) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top) + parseInt(this.element.style.height)))) 
-            {
-                // ограничение действия коллизии по горизонтали
-                if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + parseInt(this.element.style.width)))) 
-                {
-                    let temp = (parseInt(this.element.style.top) + parseInt(this.element.style.height));
-                    playerOne.element.style.top = temp + 'px';
-                }
-            }
-
-        }.bind(this), 5);
-    }
-}
-
 let mainField = new Field('field', 568, 680);
-let playerOne = new Player('player', 50, 50, 230, 300);
+let playerOne = new Player('player', 50, 50, 230, 300, 'field');
 
 // id, height, width, top coordinate, left coordinate
-let triggerOne = new Trigger("triggerOne", 100, 100, 540, 295, function () {
+let triggerOne = new Trigger("triggerOne", 'player', 100, 100, 540, 295, function () {
     location.href = '1.html';
 }.bind(this));
 
-let triggerTwo = new Trigger("triggerTwo", 50, 50, 80, 300, function () {
+let triggerTwo = new Trigger("triggerTwo", 'player', 50, 50, 80, 300, function () {
     if (this.element.classList.contains('rupee') && this.isPicked == false)
     {
         playerOne.rupeeCounter += 1;
@@ -267,16 +16,16 @@ let triggerTwo = new Trigger("triggerTwo", 50, 50, 80, 300, function () {
 });
 
 // id, height, width, top coordinate, left coordinate
-let collisionOne = new Collision("collisionOne", 95, 85, 210, 75);
-let collisionTwo = new Collision("collisionTwo", 95, 85, 100, 75);
-let collisionThree = new Collision("collisionThree", 95, 85, 210, 530);
-let collisionFour = new Collision("collisionFour", 95, 85, 100, 530);
-let collisionFive = new Collision("collisionFive", 285, 80, 155, 435);
-let collisionSix = new Collision("collisionSix", 285, 80, 155, 175);
-let collisionEight = new Collision("collisionEight", 100, 85, 35, 170);
-let collisionNine = new Collision("collisionNine", 100, 85, 35, 430);
-let collisionTen = new Collision("collisionTen", 55, 135, 525, 390);
-let collisionEleven = new Collision("collisionEleven", 55, 135, 525, 160);
+let collisionOne = new Collision("collisionOne", 'player', 95, 85, 210, 75);
+let collisionTwo = new Collision("collisionTwo", 'player', 95, 85, 100, 75);
+let collisionThree = new Collision("collisionThree", 'player', 95, 85, 210, 530);
+let collisionFour = new Collision("collisionFour", 'player', 95, 85, 100, 530);
+let collisionFive = new Collision("collisionFive", 'player', 285, 80, 155, 435);
+let collisionSix = new Collision("collisionSix", 'player', 285, 80, 155, 175);
+let collisionEight = new Collision("collisionEight", 'player', 100, 85, 35, 170);
+let collisionNine = new Collision("collisionNine", 'player', 100, 85, 35, 430);
+let collisionTen = new Collision("collisionTen", 'player', 55, 135, 525, 390);
+let collisionEleven = new Collision("collisionEleven", 'player', 55, 135, 525, 160);
 
 let valuePosY = document.querySelector("#posY-value");
 let buttonPosY = document.querySelector("#posY-button");
