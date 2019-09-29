@@ -1,7 +1,7 @@
 let mainField = new Field('field', 568, 680);
 let playerOne = new Player('player', 50, 50, 230, 300, 'field');
 
-// id, height, width, top coordinate, left coordinate
+// id, player, height, width, top coordinate, left coordinate
 let triggerOne = new Trigger("triggerOne", 'player', 100, 100, 540, 295, function () {
     location.href = '1.html';
 }.bind(this));
@@ -15,7 +15,7 @@ let triggerTwo = new Trigger("triggerTwo", 'player', 50, 50, 80, 300, function (
     }
 });
 
-// id, height, width, top coordinate, left coordinate
+// id, player, height, width, top coordinate, left coordinate
 let collisionOne = new Collision("collisionOne", 'player', 95, 85, 210, 75);
 let collisionTwo = new Collision("collisionTwo", 'player', 95, 85, 100, 75);
 let collisionThree = new Collision("collisionThree", 'player', 95, 85, 210, 530);

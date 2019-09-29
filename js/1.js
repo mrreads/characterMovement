@@ -1,7 +1,7 @@
 let mainField = new Field('field', 400, 640);
 let playerOne = new Player('player', 50, 50, 0, 0, 'field');
 
-// id, height, width, top coordinate, left coordinate
+// id, player, height, width, top coordinate, left coordinate
 let triggerOne = new Trigger("triggerOne", 'player', 100, 100, 50, 450, function () {
     if (this.id == "triggerOne")
     {
@@ -22,7 +22,7 @@ let triggerThree = new Trigger("triggerThree", 'player', 50, 50, 280, 200, funct
     }
 });
 
-// id, height, width, top coordinate, left coordinate
+// id, player, height, width, top coordinate, left coordinate
 let collisionOne = new Collision("collisionOne", 'player', 125, 125, 200, 50);
 
 let valuePosY = document.querySelector("#posY-value");
