@@ -68,6 +68,7 @@ class Player
                     {
                         this.element.style.top = temp + "px";
                     }
+                    if (this.element.querySelector('.message')) { this.element.querySelector('.message').style.transform = 'translate(50%, 0) scaleX(1)'; }
                 }
             }.bind(this), 1);
         }
@@ -93,6 +94,7 @@ class Player
                         temp = parseInt(this.element.style.left) + 1;
                         this.element.style.backgroundImage = 'url("./img/walkSide.gif")';
                         this.element.style.transform = 'scaleX(-1)';
+                        if (this.element.querySelector('.message')) { this.element.querySelector('.message').style.transform = 'translate(50%, 0) scaleX(-1)'; }
                         this.direction = 'side';
                     } 
                     else 
@@ -100,6 +102,7 @@ class Player
                         temp = parseInt(this.element.style.left) - 1;
                         this.element.style.backgroundImage = 'url("./img/walkSide.gif")';
                         this.element.style.transform = 'unset';
+                        if (this.element.querySelector('.message')) { this.element.querySelector('.message').style.transform = 'translate(50%, 0) scaleX(1)'; }
                         this.direction = 'side';
                     }
                     if (temp > 0) 
@@ -143,11 +146,14 @@ class Player
 
     showwMessage(text)
     {
-        this.element.innerHTML += '<p class="message">'+text+'</p>';
+        if (!this.element.querySelector('.message'))
+        {
+            this.element.innerHTML += '<p class="message">'+text+'</p>';
+        }
     }
     hideMessage()
     {
-        if (document.querySelector('.message'))
+        if (this.element.querySelector('.message'))
         {
             document.querySelector('.message').remove();
         }
@@ -275,7 +281,7 @@ let playerOne = new Player('player', 50, 50, 0, 0);
 let triggerOne = new Trigger("triggerOne", 100, 100, 50, 450, function () {
     if (this.id == "triggerOne")
     {
-        playerOne.showwMessage('Текстовое сообщение!!!');
+        playerOne.showwMessage('Я зашел в триггер!!!');
     }
 }, true);
 
