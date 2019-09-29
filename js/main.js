@@ -26,8 +26,7 @@ class Player
         this.direction = 'idle';
         this.isMove = false;
 
-        setInterval(function () 
-        {
+        setInterval(function () {
             this.checkIdle();
         }.bind(this), 250);
     }
@@ -117,8 +116,7 @@ class Player
         this.tempOldOne = this.element.style.top;
         this.tempOldTwo = this.element.style.left;
 
-        setTimeout(function () 
-        {
+        setTimeout(function () {
             this.tempNewOne = this.element.style.top;
             this.tempNewTwo = this.element.style.left;
         }.bind(this), 100);
@@ -158,6 +156,7 @@ class Trigger
         this.inTrigger = false;
         this.func = func;
 
+        // Проверяет, находится ли игрок в триггере.
         setInterval(function () 
         {
             if ((parseInt(playerOne.element.style.left) >= parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left) + parseInt(this.element.style.width)))) 
@@ -176,7 +175,7 @@ class Trigger
             {
                 this.inTrigger = false;
             }
-        }.bind(this), 150);
+        }.bind(this), 50);
     }
 }
 
@@ -193,11 +192,14 @@ class Collision
         this.element.style.top = top + 'px';
         this.element.style.left = left + 'px';
 
+        // Каждые **ms проверяется, входит ли игрок в коллизию. Если входит - отталкивает обратно.
         setInterval(function () 
         {
             // LEFT COLLISION
+            // ЕСЛИ - ЛЕВЫЕ КООРДИНАТЫ ИГРОКА + ШИРИНА ИГРОКА >БОЛЬШЕ> ЛЕВЫЕ КООРДИНАТЫ ОБЬЕКТА (дальше логика на ограничения действия коллизии)
             if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + (parseInt(this.element.style.width) / 2)))) 
             {
+                // ограничение действия коллизии по вертикали
                 if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height) - 5) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top) + parseInt(this.element.style.height) - 5))) 
                 {
                     let temp = (parseInt(this.element.style.left) - parseInt(playerOne.element.style.width));
@@ -205,9 +207,11 @@ class Collision
                 }
             }
 
-            // RIGHT COLLISIOn
+            // RIGHT COLLISION
+            // ЕСЛИ - ЛЕВЫЕ КООРДИНАТЫ ИГРОКА <МЕНЬШЕ< ЛЕВЫЕ КООРДИНАТЫ ОБЬЕКТА + ШИРИНА ОБЬЕКТА (дальше логика на ограничения действия коллизии)
             if (((parseInt(playerOne.element.style.left)) < ((parseInt(this.element.style.left) + parseInt(this.element.style.width)))) && !(parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + (parseInt(this.element.style.width) / 2)))) 
             {
+                // ограничение действия коллизии по вертикали
                 if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height) - 5) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top) + parseInt(this.element.style.height) - 5))) 
                 {
                     let temp = (parseInt(this.element.style.left) + parseInt(this.element.style.width));
@@ -216,8 +220,10 @@ class Collision
             }
 
             // TOP COLLISION
+            // ЕСЛИ - КООРДИНАТЫ ВЫСОТЫ ИГРОКА + ВЫСОТА ИГРОКА >БОЛЬШЕ> КООРДИНАТЫ ВЫСОТЫ ОБЬЕКТА (дальше логика на ограничения действия коллизии)
             if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > (parseInt(this.element.style.top))) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top) + (parseInt(this.element.style.height) / 2)))) 
             {
+                // ограничение действия коллизии по горизонтали
                 if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + parseInt(this.element.style.width)))) 
                 {
                     let temp = (parseInt(this.element.style.top) - parseInt(playerOne.element.style.height));
@@ -226,8 +232,10 @@ class Collision
             }
 
             // BOTTOM COLLISION
+            // ЕСЛИ - КООРДИНАТЫ ВЫСОТЫ ИГРОКА  >МЕНЬШЕ> КООРДИНАТ ВЫСОТЫ ОБЬЕКТА + ВЫСОТА ОБЬЕКТА (дальше логика на ограничения действия коллизии)
             if (((parseInt(playerOne.element.style.top)) > (parseInt(this.element.style.top))) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top) + parseInt(this.element.style.height)))) 
             {
+                // ограничение действия коллизии по горизонтали
                 if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + parseInt(this.element.style.width)))) 
                 {
                     let temp = (parseInt(this.element.style.top) + parseInt(this.element.style.height));
