@@ -140,11 +140,23 @@ class Player
             this.element.style.backgroundImage = 'url("./img/idleSidewalk.png")';
         }
     }
+
+    showwMessage(text)
+    {
+        this.element.innerHTML += '<p class="message">'+text+'</p>';
+    }
+    hideMessage()
+    {
+        if (document.querySelector('.message'))
+        {
+            document.querySelector('.message').remove();
+        }
+    }
 }
 
 class Trigger 
 {
-    constructor(id, height, width, top, left, func) 
+    constructor(id, height, width, top, left, func, message) 
     {
         this.id = id;
         this.height = height;
@@ -155,27 +167,34 @@ class Trigger
         this.element.style.top = top + 'px';
         this.element.style.left = left + 'px';
         this.inTrigger = false;
+        this.triggerName = id;
         this.func = func;
         this.isPicked = false;
+        this.wasInTrigger = false;
+        this.triggerForMessage = false;
+        this.triggerForMessage = message;
 
         // Проверяет, находится ли игрок в триггере.
         setInterval(function () 
         {
-            if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + parseInt(this.element.style.width)))) 
+            
+            if ((((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + parseInt(this.element.style.width)))) && (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top) + parseInt(this.element.style.height)))))
             {
-                if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top) + parseInt(this.element.style.height)))) 
-                {
-                    this.inTrigger = true;
-                    this.func();
-                } 
-                else 
+                this.inTrigger = true;
+                this.func();
+                if (this.triggerForMessage == true) { this.wasInTrigger = true; }
+            }
+            else 
+            {
+                if (this.triggerName == id)
                 {
                     this.inTrigger = false;
                 }
-            } 
-            else 
-            {
-                this.inTrigger = false;
+                
+                if (this.wasInTrigger == true)
+                {
+                    playerOne.hideMessage();
+                }
             }
         }.bind(this), 50);
     }
@@ -254,13 +273,15 @@ let playerOne = new Player('player', 50, 50, 0, 0);
 
 // id, height, width, top coordinate, left coordinate
 let triggerOne = new Trigger("triggerOne", 100, 100, 50, 450, function () {
-    // код, когда в триггере
-}.bind(this));
+    if (this.id == "triggerOne")
+    {
+        playerOne.showwMessage('Текстовое сообщение!!!');
+    }
+}, true);
 
 let triggerTwo = new Trigger("triggerTwo", 20, 160, 380, 240, function () {
     location.href = '2.html';
-}.bind(this));
-
+});
 
 let triggerThree = new Trigger("triggerThree", 50, 50, 280, 200, function () {
     if (this.element.classList.contains('rupee') && this.isPicked == false)

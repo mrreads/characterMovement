@@ -194,3 +194,18 @@ input
     background-position: center;
     background-size: contain;
 }
+
+.message
+{
+    position: absolute;
+    right: 50%;
+    bottom: 55px;
+
+    padding: 8px;
+
+    transform: translate(50%, 0);
+
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: wheat;
+}
