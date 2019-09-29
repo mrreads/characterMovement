@@ -247,11 +247,13 @@ class Collision
     }
 }
 
-triggerOne = new Trigger("triggerOne", 100, 100, 250, 400, function () {
+// id, height, width, top coordinate, left coordinate
+triggerOne = new Trigger("triggerOne", 100, 100, 50, 450, function () {
     // код, когда в триггере
 }.bind(this));
 
-collisionOne = new Collision("collisionOne", 100, 100, 200, 200);
+// id, height, width, top coordinate, left coordinate
+collisionOne = new Collision("collisionOne", 125, 125, 200, 50);
 
 let mainField = new Field('field', 400, 640);
 let playerOne = new Player('player', 50, 50);
