@@ -78,7 +78,6 @@ class Player
         if (!((parseInt(this.element.style.left) + parseInt(value)) > (parseInt(mainField.element.style.width) - parseInt(this.element.style.width)))) 
         {
             let counter = 0;
-            let direction;
             let animate = setInterval(function () 
             {
                 if (counter == Math.abs(value)) 
