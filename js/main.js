@@ -159,9 +159,9 @@ class Trigger
         // Проверяет, находится ли игрок в триггере.
         setInterval(function () 
         {
-            if ((parseInt(playerOne.element.style.left) >= parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left) + parseInt(this.element.style.width)))) 
+            if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + parseInt(this.element.style.width)))) 
             {
-                if ((parseInt(playerOne.element.style.top) >= parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top) + parseInt(this.element.style.height)))) 
+                if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) < (parseInt(this.element.style.top) + parseInt(this.element.style.height)))) 
                 {
                     this.inTrigger = true;
                     this.func();
