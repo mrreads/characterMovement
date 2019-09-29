@@ -194,22 +194,33 @@ class Collision
         this.element.style.left = left+'px';
 
         setInterval(function() {
-            // LEFT COLLISION
-            if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
-            {
-                if ((parseInt(playerOne.element.style.top) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top)+parseInt(this.element.style.height))))
-                {
-                    let temp = (parseInt(this.element.style.left) - parseInt(playerOne.element.style.width));
-                    playerOne.element.style.left = temp + 'px';
-                }
-            }
+            // // LEFT COLLISION
+            // if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) > parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + (parseInt(this.element.style.width)/2))))
+            // {
+            //     if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top)+parseInt(this.element.style.height))))
+            //     {
+            //         let temp = (parseInt(this.element.style.left) - parseInt(playerOne.element.style.width));
+            //         playerOne.element.style.left = temp + 'px';
+            //     }
+            // }
             
-            if (((parseInt(playerOne.element.style.left)) < ((parseInt(this.element.style.left) + parseInt(this.element.style.width)))) && !(parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
+            // // RIGHT COLLISIOn
+            // if (((parseInt(playerOne.element.style.left)) < ((parseInt(this.element.style.left) + parseInt(this.element.style.width)))) && !(parseInt(playerOne.element.style.left) < (parseInt(this.element.style.left) + (parseInt(this.element.style.width)/2))))
+            // {
+            //     if (((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top)+parseInt(this.element.style.height))))
+            //     {
+            //         let temp = (parseInt(this.element.style.left) + parseInt(this.element.style.width));
+            //         playerOne.element.style.left = temp + 'px';
+            //     }
+            // }
+
+            // TOP COLLISION
+            if ((parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height)) > (parseInt(this.element.style.top)))
             {
-                if ((parseInt(playerOne.element.style.top) > parseInt(this.element.style.top)) && (parseInt(playerOne.element.style.top) <= (parseInt(this.element.style.top)+parseInt(this.element.style.height))))
+                if (((parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width)) >= parseInt(this.element.style.left)) && (parseInt(playerOne.element.style.left) <= (parseInt(this.element.style.left)+parseInt(this.element.style.width))))
                 {
-                    let temp = (parseInt(this.element.style.left) + parseInt(this.element.style.width));
-                    playerOne.element.style.left = temp + 'px';
+                    let temp = (parseInt(this.element.style.top) - parseInt(playerOne.element.style.height));
+                    playerOne.element.style.top = temp + 'px';
                 }
             }
         }.bind(this), 5);
@@ -221,7 +232,7 @@ triggerOne = new Trigger("triggerOne", 100, 100, 250, 400, function()
     // код, когда в триггере
 }.bind(this));
 
-collisionOne = new Collision("collisionOne", 100, 100, 250, 200);
+collisionOne = new Collision("collisionOne", 100, 100, 200, 200);
 
 let mainField = new Field('field', 400, 640);
 let playerOne = new Player('player', 50, 50);
