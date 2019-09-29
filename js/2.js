@@ -13,7 +13,7 @@ class Field
 
 class Player 
 {
-    constructor(id, height, width) 
+    constructor(id, height, width, top, left) 
     {
         this.id = id;
         this.height = height;
@@ -21,8 +21,8 @@ class Player
         this.element = document.querySelector('#' + this.id);
         this.element.style.height = this.height + 'px';
         this.element.style.width = this.width + 'px';
-        this.element.style.top = '0px';
-        this.element.style.left = '0px';
+        this.element.style.top = top + 'px';
+        this.element.style.left = left + 'px';
         this.direction = 'idle';
         this.isMove = false;
 
@@ -247,16 +247,25 @@ class Collision
     }
 }
 
+let mainField = new Field('field', 568, 680);
+let playerOne = new Player('player', 50, 50, 230, 300);
+
 // id, height, width, top coordinate, left coordinate
-triggerOne = new Trigger("triggerOne", 100, 100, 50, 450, function () {
-    // код, когда в триггере
+triggerOne = new Trigger("triggerOne", 100, 100, 540, 295, function () {
+    location.href = '1.html';
 }.bind(this));
 
 // id, height, width, top coordinate, left coordinate
-collisionOne = new Collision("collisionOne", 125, 125, 200, 50);
-
-let mainField = new Field('field', 400, 640);
-let playerOne = new Player('player', 50, 50);
+collisionOne = new Collision("collisionOne", 95, 85, 210, 75);
+collisionTwo = new Collision("collisionTwo", 95, 85, 100, 75);
+collisionThree = new Collision("collisionThree", 95, 85, 210, 530);
+collisionFour = new Collision("collisionFour", 95, 85, 100, 530);
+collisionFive = new Collision("collisionFive", 285, 80, 155, 435);
+collisionSix = new Collision("collisionSix", 285, 80, 155, 175);
+collisionEight = new Collision("collisionEight", 100, 85, 35, 170);
+collisionNine = new Collision("collisionNine", 100, 85, 35, 430);
+collisionTen = new Collision("collisionTen", 55, 135, 525, 390);
+collisionEleven = new Collision("collisionEleven", 55, 135, 525, 160);
 
 let valuePosY = document.querySelector("#posY-value");
 let buttonPosY = document.querySelector("#posY-button");
@@ -304,8 +313,7 @@ document.querySelector("#hideButton").addEventListener('click', function ()
 // панель дебага
 document.querySelector(".debug p:nth-child(1)").textContent = 'Высота поля: ' + mainField.element.style.height;
 document.querySelector(".debug p:nth-child(2)").textContent = 'Ширина поля: ' + mainField.element.style.width;
-setInterval(function () 
-{
+setInterval(function () {
     document.querySelector(".debug p:nth-child(3)").textContent = 'Координаты игрока по Y: ' + parseInt(playerOne.element.style.top) + ' : ' + (parseInt(playerOne.element.style.top) + parseInt(playerOne.element.style.height));
     document.querySelector(".debug p:nth-child(4)").textContent = 'Координаты игрока по X: ' + parseInt(playerOne.element.style.left) + ' : ' + (parseInt(playerOne.element.style.left) + parseInt(playerOne.element.style.width));
     document.querySelector(".debug p:nth-child(5)").textContent = 'isMove: ' + playerOne.isMove;

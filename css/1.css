@@ -177,6 +177,10 @@ input
     position: absolute;
 
     border: 2px solid blue;
+}
+
+#collisionOne
+{
     background-image: url("./../img/collision_1.png");
     background-repeat: no-repeat;
     background-position: center;

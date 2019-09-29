@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css?family=Comfortaa&display=swap");
+
+*
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body
+{
+    display: flex;
+
+    min-height: 100%;
+
+    align-items: center;
+    flex-flow: row wrap;
+    image-rendering: pixelated;
+    justify-content: center;
+}
+
+body, input
+{
+    font-family: "Comfortaa", cursive;
+}
+
+#field
+{
+    position: relative;
+
+    margin-bottom: 30px;
+
+    outline: 3px solid yellow;
+}
+
+#player
+{
+    position: absolute;
+}
+
+input
+{
+    display: flex;
+
+    padding: 10px 15px;
+
+    text-align: center;
+
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.controls .wrapper
+{
+    display: flex;
+
+    flex-flow: row nowrap;
+}
+
+.controls
+{
+    display: flex;
+
+    padding: 15px;
+
+    align-items: center;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.keys
+{
+    position: relative;
+
+    width: 150px;
+    height: 150px;
+
+    border: 1px red solid;
+}
+
+.up, .left, .right, .down
+{
+    font-size: 12px;
+
+    position: absolute;
+
+    display: flex;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer;
+
+    border: 1px solid black;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.up
+{
+    top: 0;
+    left: 50%;
+
+    transform: translate(-50%, 0%);
+}
+
+.down
+{
+    bottom: 0;
+    left: 50%;
+
+    transform: translate(-50%, 0%);
+}
+
+.left
+{
+    top: 50%;
+    left: 0;
+
+    transform: translate(0%, -50%);
+}
+
+.right
+{
+    top: 50%;
+    right: 0;
+
+    transform: translate(0%, -50%);
+}
+
+#player
+{
+    border: 2px solid black;
+    background-image: url("./../img/idleForward.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.background
+{
+    background-image: url("./../img/backgroundMap_2.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+#hideButton
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    padding: 5px;
+}
+
+.hide
+{
+    display: none;
+}
+
+.trigger
+{
+    position: absolute;
+
+    border: 2px solid red;
+}
+
+.collision
+{
+    position: absolute;
+
+    border: 2px solid blue;
+}

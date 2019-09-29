@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/2.css">
+    <script src="./js/2.js" defer></script>
+</head>
+<body>
+
+    <button id="hideButton"> Скрыть информационную панель</button>
+    <div class="wrapper" id="information">
+        <div class="controls">
+            <div class="wrapper">
+                <input type="text" name="posY" id="posY-value">
+                <input type="submit" value="Двинуть по Y" id="posY-button">
+            </div>
+
+            <div class="wrapper">
+                <input type="text" name="posX" id="posX-value">
+                <input type="submit" value="Двинуть по X" id="posX-button">
+            </div>
+        </div>
+
+        <div class="controls">
+            <p> WADS тоже работают </p>
+            <div class="keys">
+                <div class="up" onclick="playerOne.moveY(-10)">верх</div>
+                <div class="left" onclick="playerOne.moveX(-10)">лева</div>
+                <div class="right" onclick="playerOne.moveX(10)">права</div>
+                <div class="down" onclick="playerOne.moveY(10)">вниз</div>
+            </div>
+        </div>
+
+        <div class="debug">
+            <p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+        </div>
+    </div>
+
+    <div class="background">
+        <div id="field">
+            <div id="player"></div>
+            
+            <div id="triggerOne" class="trigger"></div>
+            <div id="triggerTwo" class="trigger"></div>
+
+            <div id="collisionOne" class="collision"></div>
+            <div id="collisionTwo" class="collision"></div>
+            <div id="collisionThree" class="collision"></div>
+            <div id="collisionFour" class="collision"></div>
+            <div id="collisionFive" class="collision"></div>
+            <div id="collisionSix" class="collision"></div>
+            <div id="collisionEight" class="collision"></div>
+            <div id="collisionNine" class="collision"></div>
+            <div id="collisionTen" class="collision"></div>
+            <div id="collisionEleven" class="collision"></div>
+        </div>
+    </div>
+
+</body>
+</html>
