@@ -84,6 +84,7 @@ class Player
                         this.element.style.transform = 'scaleX(-1)';
                         if (this.element.querySelector('.message')) { this.element.querySelector('.message').style.transform = 'translate(50%, 0) scaleX(-1)'; }
                         this.direction = 'side';
+                        this.isMove = true;
                     } 
                     else 
                     {
@@ -92,6 +93,7 @@ class Player
                         this.element.style.transform = 'unset';
                         if (this.element.querySelector('.message')) { this.element.querySelector('.message').style.transform = 'translate(50%, 0) scaleX(1)'; }
                         this.direction = 'side';
+                        this.isMove = true;
                     }
                     if (temp > 0) 
                     {

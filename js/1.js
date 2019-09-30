@@ -1,5 +1,5 @@
 let mainField = new Field('field', 400, 640);
-let playerOne = new Player('player', 50, 50, 0, 0, 'field');
+let playerOne = new Player('player', 50, 50, 1, 1, 'field');
 
 // id, player, height, width, top coordinate, left coordinate
 let triggerOne = new Trigger("triggerOne", 'player', 100, 100, 50, 450, function () {
@@ -13,7 +13,7 @@ let triggerTwo = new Trigger("triggerTwo", 'player', 20, 160, 380, 240, function
     location.href = '2.html';
 });
 
-let triggerThree = new Trigger("triggerThree", 'player', 50, 50, 280, 200, function () {
+let triggerThree = new Trigger("triggerThree", 'player', 60, 50, 280, 200, function () {
     if (this.element.classList.contains('rupee') && this.isPicked == false)
     {
         playerOne.rupeeCounter += 1;
