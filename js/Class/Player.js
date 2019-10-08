@@ -182,6 +182,6 @@ class Player
                 }
             }
 
-        }.bind(this), 1000/60);
+        }.bind(this), 1);
     }
 }
