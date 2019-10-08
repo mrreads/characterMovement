@@ -1,5 +1,5 @@
 let mainField = new Field('field', 400, 640);
-let playerOne = new Player('player', 50, 50, 1, 1, 'field');
+let playerOne = new Player('player', 50, 50, 151, 211, 'field');
 
 // id, player, height, width, top coordinate, left coordinate
 let triggerOne = new Trigger("triggerOne", 'player', 100, 100, 50, 450, function () {

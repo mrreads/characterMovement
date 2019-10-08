@@ -18,6 +18,9 @@ class Player
         setInterval(function () {
             this.checkIdle();
         }.bind(this), 250);
+
+        this.scroll();
+        this.temp = null;
     }
 
     moveY(value) 
@@ -33,11 +36,10 @@ class Player
                 } 
                 else 
                 {
-                    let temp;
                     counter++;
                     if (value > 0) 
                     {
-                        temp = parseInt(this.element.style.top) + 1;
+                        this.temp = parseInt(this.element.style.top) + 1;
                         this.element.style.backgroundImage = 'url("./img/walkForward.gif")';
                         this.element.style.transform = 'unset';
                         this.direction = 'forward';
@@ -45,16 +47,16 @@ class Player
                     } 
                     else 
                     {
-                        temp = parseInt(this.element.style.top) - 1;
+                        this.temp = parseInt(this.element.style.top) - 1;
                         this.element.style.backgroundImage = 'url("./img/walkBack.gif")';
                         this.element.style.transform = 'unset';
                         this.direction = 'backward';
                         this.isMove = true;
                     }
 
-                    if (temp >= 0) 
+                    if (this.temp >= 0) 
                     {
-                        this.element.style.top = temp + "px";
+                        this.element.style.top = this.temp + "px";
                     }
                     if (this.element.querySelector('.message')) { this.element.querySelector('.message').style.transform = 'translate(50%, 0) scaleX(1)'; }
                 }
@@ -75,11 +77,10 @@ class Player
                 } 
                 else 
                 {
-                    let temp;
                     counter++;
                     if (value >= 0) 
                     {
-                        temp = parseInt(this.element.style.left) + 1;
+                        this.temp = parseInt(this.element.style.left) + 1;
                         this.element.style.backgroundImage = 'url("./img/walkSide.gif")';
                         this.element.style.transform = 'scaleX(-1)';
                         if (this.element.querySelector('.message')) { this.element.querySelector('.message').style.transform = 'translate(50%, 0) scaleX(-1)'; }
@@ -88,16 +89,16 @@ class Player
                     } 
                     else 
                     {
-                        temp = parseInt(this.element.style.left) - 1;
+                        this.temp = parseInt(this.element.style.left) - 1;
                         this.element.style.backgroundImage = 'url("./img/walkSide.gif")';
                         this.element.style.transform = 'unset';
                         if (this.element.querySelector('.message')) { this.element.querySelector('.message').style.transform = 'translate(50%, 0) scaleX(1)'; }
                         this.direction = 'side';
                         this.isMove = true;
                     }
-                    if (temp > 0) 
+                    if (this.temp > 0) 
                     {
-                        this.element.style.left = temp + "px";
+                        this.element.style.left = this.temp + "px";
                     }
                 }
             }.bind(this), 1);
@@ -147,5 +148,40 @@ class Player
         {
             document.querySelector('.message').remove();
         }
+    }
+
+    scroll()
+    {
+        this.objects = [];
+        setInterval(function()
+        {
+            if ((parseInt(this.element.style.left) + parseInt(this.element.style.width)) > (parseInt(this.field.style.width)/2))
+            {
+                this.temp = ((parseInt(this.field.style.width) /2) - parseInt(this.element.style.width));
+                this.element.style.left = this.temp + 'px';
+                
+                this.objects = this.field.children;
+
+                for (let i = 1; i < this.objects.length; i++)
+                {
+                    this.temp = parseInt(this.objects[i].style.left) - 1;
+                    this.objects[i].style.left = this.temp + "px";
+                }
+            }
+
+            if ((parseInt(this.element.style.left) < 2))
+            {
+                this.element.style.left = 2 + 'px';
+                
+                this.objects = this.field.children;
+
+                for (let i = 1; i < this.objects.length; i++)
+                {
+                    this.temp = parseInt(this.objects[i].style.left) + 1;
+                    this.objects[i].style.left = this.temp + "px";
+                }
+            }
+
+        }.bind(this), 1000/60);
     }
 }

@@ -25,7 +25,8 @@ body, input
 }
 
 #field
-{
+{   
+    overflow: hidden;
     position: relative;
 
     margin: 25px;
