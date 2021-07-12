@@ -9,8 +9,8 @@
 </head>
 <body>
 
-    <button id="hideButton"> Скрыть информационную панель</button>
-    <div class="wrapper hide" id="information">
+    <button id="hideButton"> Скрыть/показать информационную панель</button>
+    <div class="wrapper" id="information">
         <div class="controls">
             <div class="wrapper">
                 <input type="text" name="posY" id="posY-value">
@@ -24,16 +24,16 @@
         </div>
 
         <div class="controls">
-            <p> WADS тоже работают </p>
+            <p> Управление - WASD </p>
             <div class="keys">
                 <div class="up" onclick="playerOne.moveY(-10)">верх</div>
                 <div class="left" onclick="playerOne.moveX(-10)">лева</div>
                 <div class="right" onclick="playerOne.moveX(10)">права</div>
                 <div class="down" onclick="playerOne.moveY(10)">вниз</div>
             </div>
-            <p> Можно зайти в нижний триггер <br> и попасть в другую комнату </p>
         </div>
-
+        <p> Можно зайти в нижний триггер <br> и попасть в другую комнату </p> 
+        <br>
         <div class="debug">
             <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
         </div>

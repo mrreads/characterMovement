@@ -7,16 +7,26 @@
     padding: 0;
 }
 
-html, body
+html
 {
-    display: flex;
+	height: 100%;
+}
 
-    min-height: 100%;
+body
+{
+	display: flex;
+	align-items: center;
+	flex-flow: row wrap;
+	justify-content: center;
 
-    align-items: center;
-    flex-flow: row wrap;
-    image-rendering: pixelated;
-    justify-content: center;
+	min-height: 100%;
+
+	image-rendering: pixelated;
+}
+
+body, input
+{
+	font-family: "Comfortaa", cursive;
 }
 
 body, input
@@ -145,6 +155,11 @@ input
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
+
+    margin: 1px;
+	margin-top: auto;
+	margin-left: auto;
+    border: 3px solid black;
 }
 
 #hideButton
@@ -181,4 +196,29 @@ input
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+}
+
+#information
+{
+    padding: 15px 50px;
+}
+
+#information
+{
+    padding: 15px 50px;
+}
+
+.debug p, .controls p
+{
+    width: 100%;
+}
+
+.controls p
+{
+    text-align: center;
+    margin-bottom: 5px;
+}
+.debug p:nth-child(2), .debug p:nth-child(4), .debug p:nth-child(6), .debug p:nth-child(7)
+{
+    margin-bottom: 15px;
 }

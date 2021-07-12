@@ -2,210 +2,234 @@
 
 *
 {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
-html, body
+html
 {
-    display: flex;
+	height: 100%;
+}
 
-    min-height: 100%;
+body
+{
+	display: flex;
+	align-items: center;
+	flex-flow: row wrap;
+	justify-content: center;
 
-    align-items: center;
-    flex-flow: row wrap;
-    image-rendering: pixelated;
-    justify-content: center;
+	min-height: 100%;
+
+	image-rendering: pixelated;
 }
 
 body, input
 {
-    font-family: "Comfortaa", cursive;
+	font-family: "Comfortaa", cursive;
 }
 
 #field
 {
-    position: relative;
+	position: relative;
 
-    margin: 25px;
+	margin: 25px;
 
-    outline: 3px solid yellow;
+	outline: 3px solid yellow;
 }
 
 #player
 {
-    position: absolute;
+	position: absolute;
 }
 
 input
 {
-    display: flex;
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+	justify-content: center;
 
-    padding: 10px 15px;
+	padding: 10px 15px;
 
-    text-align: center;
-
-    align-items: center;
-    flex-grow: 1;
-    justify-content: center;
+	text-align: center;
 }
 
 .controls .wrapper
 {
-    display: flex;
-
-    flex-flow: row nowrap;
+	display: flex;
+	flex-flow: row nowrap;
 }
 
 .controls
 {
-    display: flex;
+	display: flex;
+	align-items: center;
+	flex-flow: column nowrap;
+	justify-content: center;
 
-    padding: 15px;
-
-    align-items: center;
-    flex-flow: column nowrap;
-    justify-content: center;
+	padding: 15px;
 }
 
 .keys
 {
-    position: relative;
+	position: relative;
 
-    width: 150px;
-    height: 150px;
+	width: 150px;
+	height: 150px;
 
-    border: 1px red solid;
+	border: 1px red solid;
 }
 
 .up, .left, .right, .down
 {
-    font-size: 12px;
+	font-size: 12px;
 
-    position: absolute;
+	position: absolute;
 
-    display: flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-    width: 50px;
-    height: 50px;
+	width: 50px;
+	height: 50px;
 
-    cursor: pointer;
+	cursor: pointer;
 
-    border: 1px solid black;
-
-    align-items: center;
-    justify-content: center;
+	border: 1px solid black;
 }
 
 .up
 {
-    top: 0;
-    left: 50%;
+	top: 0;
+	left: 50%;
 
-    transform: translate(-50%, 0%);
+	transform: translate(-50%, 0%);
 }
 
 .down
 {
-    bottom: 0;
-    left: 50%;
+	bottom: 0;
+	left: 50%;
 
-    transform: translate(-50%, 0%);
+	transform: translate(-50%, 0%);
 }
 
 .left
 {
-    top: 50%;
-    left: 0;
+	top: 50%;
+	left: 0;
 
-    transform: translate(0%, -50%);
+	transform: translate(0%, -50%);
 }
 
 .right
 {
-    top: 50%;
-    right: 0;
+	top: 50%;
+	right: 0;
 
-    transform: translate(0%, -50%);
+	transform: translate(0%, -50%);
 }
 
 #player
 {
-    border: 2px solid black;
-    background-image: url("./../img/idleForward.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
+	border: 2px solid black;
+	background-image: url("./../img/idleForward.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
 }
 
 .background
 {
-    margin: 15px;
-    padding: 15px;
-    padding: 125px 90px;
+	margin: 1px;
+	margin-top: auto;
+	margin-left: auto;
+	padding: 15px;
+	padding: 109px 90px;
 
-    background-image: url("./../img/backgroundMap_1.png");
-    background-repeat: no-repeat;
-    background-position: top left;
-    background-size: contain;
+	border: 3px solid black;
+	background-image: url("./../img/backgroundMap_1.png");
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: contain;
 }
 
 #hideButton
 {
-    position: absolute;
-    top: 0;
-    left: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
 
-    padding: 5px;
+	padding: 5px;
 }
 
 .hide
 {
-    display: none;
+	display: none;
 }
 
 .trigger
 {
-    position: absolute;
+	position: absolute;
 
-    border: 2px solid red;
+	border: 2px solid red;
 }
 
 .collision
 {
-    position: absolute;
+	position: absolute;
 
-    border: 2px solid blue;
+	border: 2px solid blue;
 }
 
 #collisionOne
 {
-    background-image: url("./../img/collision_1.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
+	background-image: url("./../img/collision_1.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
 }
 
 .rupee
 {
-    background-image: url("./../img/Rupee.gif");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+	background-image: url("./../img/Rupee.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 }
 
 .message
 {
-    position: absolute;
-    right: 50%;
-    bottom: 55px;
+	position: absolute;
+	right: 50%;
+	bottom: 55px;
 
-    padding: 8px;
+	padding: 8px;
 
-    transform: translate(50%, 0);
+	transform: translate(50%, 0);
 
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: wheat;
+	border: 2px solid black;
+	border-radius: 10px;
+	background-color: wheat;
+}
+
+#information
+{
+    padding: 15px 50px;
+}
+
+.debug p, .controls p
+{
+    width: 100%;
+}
+
+.controls p
+{
+    text-align: center;
+    margin-bottom: 5px;
+}
+.debug p:nth-child(2), .debug p:nth-child(4), .debug p:nth-child(6), .debug p:nth-child(7)
+{
+    margin-bottom: 15px;
 }
