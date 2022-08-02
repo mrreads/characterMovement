@@ -16,7 +16,7 @@ body
 {
 	display: flex;
 	align-items: center;
-	flex-flow: row wrap;
+	flex-flow: row nowrap;
 	justify-content: center;
 
 	min-height: 100%;
@@ -59,6 +59,10 @@ input
     align-items: center;
     flex-grow: 1;
     justify-content: center;
+}
+
+input[type=text] {
+	width: 115px;
 }
 
 .controls .wrapper
@@ -157,7 +161,6 @@ input
     background-size: 100% 100%;
 
     margin: 1px;
-	margin-top: auto;
 	margin-left: auto;
     border: 3px solid black;
 }
@@ -205,6 +208,7 @@ input
 
 #information
 {
+    width: 400px;
     padding: 15px 50px;
 }
 
@@ -221,4 +225,11 @@ input
 .debug p:nth-child(2), .debug p:nth-child(4), .debug p:nth-child(6), .debug p:nth-child(7)
 {
     margin-bottom: 15px;
+}
+
+@media screen and (max-width: 1300px) {
+	#information
+	{
+		padding: 15px 5px;
+	}
 }

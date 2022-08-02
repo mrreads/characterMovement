@@ -16,7 +16,7 @@ body
 {
 	display: flex;
 	align-items: center;
-	flex-flow: row wrap;
+	flex-flow: row nowrap;
 	justify-content: center;
 
 	min-height: 100%;
@@ -27,6 +27,10 @@ body
 body, input
 {
 	font-family: "Comfortaa", cursive;
+}
+
+input[type=text] {
+	width: 115px;
 }
 
 #field
@@ -143,7 +147,6 @@ input
 .background
 {
 	margin: 1px;
-	margin-top: auto;
 	margin-left: auto;
 	padding: 15px;
 	padding: 109px 90px;
@@ -216,6 +219,7 @@ input
 
 #information
 {
+	width: 400px;
     padding: 15px 50px;
 }
 
@@ -232,4 +236,11 @@ input
 .debug p:nth-child(2), .debug p:nth-child(4), .debug p:nth-child(6), .debug p:nth-child(7)
 {
     margin-bottom: 15px;
+}
+
+@media screen and (max-width: 1300px) {
+	#information
+	{
+		padding: 15px 5px;
+	}
 }

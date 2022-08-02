@@ -3,7 +3,7 @@ let playerOne = new Player('player', 50, 50, 230, 300, 'field');
 
 // id, player, height, width, top coordinate, left coordinate
 let triggerOne = new Trigger("triggerOne", 'player', 50, 100, 540, 295, function () {
-    location.href = '1.html';
+    location.href = 'index.html';
 }.bind(this));
 
 let triggerTwo = new Trigger("triggerTwo", 'player', 50, 50, 80, 300, function () {
